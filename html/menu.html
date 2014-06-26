@@ -1,0 +1,23 @@
+
+<div id="mainmenu">
+	<button id="playfield" class="mnu">One Play</button>
+	<div class="spacer"></div>
+	<button id="mplay" class="mnu">Multi-Player</button>
+	<div class="spacer"></div>
+	<button id="settings" class="mnu">Settings</button>
+	<div class="spacer"></div>
+	<button id="hscore" class="mnu">High Score</button>
+	<div class="spacer"></div>
+	<button id="about" class="mnu">About</button>
+	<div class="spacer"></div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {		
+		$('#playfield').button({icons: {primary: "ui-icon-play"}});
+		$('#settings').button({icons: {primary: "ui-icon-gear"}});
+		$('#mplay').button({icons:{primary: "ui-icon-person"}});
+		$('#hscore').button({icons:{primary: "ui-icon-star"}});
+		$('#about').button();
+		$('#mainmenu').fadeIn(2000);
+	});
+</script>
