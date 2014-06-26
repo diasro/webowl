@@ -52,7 +52,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .box {
     background: none repeat scroll 0 0 #2db34a;
     height: 100%;
-    line-height: 400px;
+    line-height: 0px;
     text-align: center;
     transform: perspective(1700px) rotateX(45deg);
 }
