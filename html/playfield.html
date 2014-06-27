@@ -36,7 +36,8 @@
 				<img id="ball" src="../images/ball.png" width="70px"  height="90px">
 			</div>
     		<button id="rollball" class="ballaction">Click to roll</button><br><br>
-    		<button id="nxtball" class="ballaction">Next ball</button>
+    		<!-- 
+    		<button id="nxtball" class="ballaction">Next ball</button> -->
     	</div>     	   	 	
     	</div>     	  	
       </figure>
@@ -54,12 +55,5 @@
 				primary : "ui-icon-home"
 			}
 		});
-		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
-			event.preventDefault();
-			var pinarry = new Array();
-			pinarry.push("3");
-			pinarry.push("2");
-			webowl.dropPins(pinarry);
-		});		
 	});
 </script>

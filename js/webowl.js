@@ -1,5 +1,22 @@
 (function(webowl, $, undefined) {
 	var RANDOM_DEGREE = 90;
+	var result = null;
+	var pins = [1,1,1,1,1,1,1,1,1,1];
+	var frame_counter = 0;
+	var ball_counter = 0;
+	
+
+	
+	function initPins() {
+		result = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0,0]];
+	}
+	
+	
+
+	
+	function generateRadom() {
+		return Math.floor(Math.random()*10)%2;
+	}
 	
 	function loadMenu() {
 		$.ajax({
@@ -39,6 +56,7 @@
 		  }, 2000, function() {			  		 
 				for (var i = 0; i <= pinarry.length; i++) {
 					drop(0,pinarry[i]);
+					$("#pin" + pinarry[i]).hide();
 				}
 		  }
 		  );
@@ -63,13 +81,55 @@
 		
 	}
 	
+	function bowlroll()	{
+		var total_down = 0;
+		for (var i = 0; i < 10; i++) {
+			if (pins[i] == 1) {//Pin is up
+				pins[i] = generateRadom();
+			} else {//Pin is down
+				++total_down;
+			}
+		}
+		ball_counter++;
+		if (total_down == 10 || ball_counter == 2) {//Frame over
+			frame_counter++;
+			ball_counter = 0;
+		}
+		if (frame_counter == 9) {//This is the last frame
+			alert('Game over');
+		}
+		console.log('Ball count: ' + ball_counter);
+		console.log('Frame count: ' + frame_counter);
+		console.log('Pins status: ' + pins);
+		var pinarry = new Array();
+		for (var i = 0; i < pins.length; i++) {
+			if (pins[i] == 0) //Drop pin
+				pinarry.push(i);
+		}
+		webowl.dropPins(pinarry);
+		$("#ballpath").css("right","-50");	
+//		pinarry.push("3");
+//		pinarry.push("2");
+//		webowl.dropPins(pinarry);
+
+	}
+
+	
 	webowl.init=function() {
 		registerMenuEvents();
 		loadMenu();
-		$(document).off('click', '#nxtball').on( 'click', '#nxtball', function (event) {
+		pins = [1,1,1,1,1,1,1,1,1,1];
+		frame_counter = 0;
+		ball_counter = 0;	
+		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
 			event.preventDefault();
-			loadView('playfield');
-		});		
+			bowlroll();
+		});				
+//		$(document).off('click', '#nxtball').on( 'click', '#nxtball', function (event) {
+//			event.preventDefault();
+//			bowlroll();
+//			//loadView('playfield');
+//		});		
 
 	};
 
