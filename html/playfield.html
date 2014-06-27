@@ -1,22 +1,48 @@
 <div style="text-align: right;">
 	<button id="menu" class="mnu">Main Menu</button>
-	<div class="spacer"></div>
 </div>
-
-
-<div class="playfield">Show Playing field here
+<div class="playfield">
     <figure class="box">
-    	<img id="pin1" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin2" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin3" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin4" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin4" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin6" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin7" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin8" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin9" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-    	<img id="pin10" class="pin" src="../images/bowling_pin.jpg" height="100px" width="35px">
-     </figure>
+    	<div>
+    	<div style="float: left;">
+    	<table id="frame1" style="height: 100px;padding: 10px;border-collapse:collapse">
+    	<tr><td><img id="pin1" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin2" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin3" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin4" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	</table>
+    	</div>
+    	<div style="float: left;margin-top: 50px">
+    	<table id="frame2" style="height: 100px;padding: 10px;border-collapse:collapse">
+    	<tr><td><img id="pin5" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin6" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin7" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	</table>
+    	</div>
+   		<div style="float: left;margin-top: 100px">
+    	<table id="frame3" style="height: 100px;padding: 10px;border-collapse:collapse">
+    	<tr><td><img id="pin8" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	<tr><td><img id="pin9" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	</table>
+    	</div>   
+ 		<div style="float: left;margin-top: 150px">
+    	<table id="frame4" style="height: 100px;padding: 10px;border-collapse:collapse">
+    	<tr><td><img id="pin10" class="pin" src="../images/pin.png" height="100px" width="35px"></td></tr>
+    	</table>
+    	</div>
+    	<div style="width: 200px;"></div>   
+    	<div style="float: right;margin-top: 150px">
+    		<div id="ballpath" style="position: relative; top:0px;">				
+				<img id="ball" src="../images/ball.png" width="70px"  height="90px">
+			</div>
+    		<button id="rollball" class="ballaction">Click to roll</button><br><br>
+    		<button id="nxtball" class="ballaction">Next ball</button>
+    	</div>     	   	 	
+    	</div>     	  	
+      </figure>
+      <!--  
+      <embed src="../audio/Kalimba.mp3" hidden="true" autostart="true" autoplay="true" loop="true">
+      -->
 </div>
 
 
@@ -28,5 +54,18 @@
 				primary : "ui-icon-home"
 			}
 		});
+		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
+			event.preventDefault();
+			var pinarry = new Array();
+			pinarry.push("10");
+			pinarry.push("9");
+			pinarry.push("8");
+			pinarry.push("7");
+			pinarry.push("6");
+			pinarry.push("5");
+			pinarry.push("3");
+			pinarry.push("2");
+			webowl.dropPins(pinarry);
+		});		
 	});
 </script>
