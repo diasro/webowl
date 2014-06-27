@@ -14,8 +14,8 @@
 	
 	function drop(degree,pin_no) {
 		var $pin = $("#pin" + pin_no);
-		$pin.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});
-		$pin.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});
+		$pin.css({ WebkitTransform: 'rotate(' + (-degree) + 'deg)'});
+		$pin.css({ '-moz-transform': 'rotate(' + (-degree) + 'deg)'});
 		if(degree < RANDOM_DEGREE){
 			setTimeout(function() { drop(++degree,pin_no); },3);
 		}
