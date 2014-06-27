@@ -4,6 +4,7 @@
 	var pins = [1,1,1,1,1,1,1,1,1,1];
 	var frame_counter = 0;
 	var ball_counter = 0;
+	var pins_down = 0;
 	
 
 	
@@ -11,7 +12,13 @@
 		result = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0,0]];
 	}
 	
-	
+	function getPinsDown() {
+		var pindown = 0;
+		for (var j = 0; j < pins.length; j++ ) {
+			if (pins[j] == 0) pindown++;
+		}
+		return pindown;
+	}
 
 	
 	function generateRadom() {
@@ -113,10 +120,24 @@
 				++total_down;
 			}
 		}
+
+		if (ball_counter == 1) {
+			result[frame_counter][ball_counter] =  getPinsDown()  - result[frame_counter][ball_counter - 1];
+		}
+		if (ball_counter == 0) {
+			result[frame_counter][ball_counter] =  getPinsDown();
+		}
+		console.log('Ball count: ' + ball_counter);
+		console.log('Frame count: ' + frame_counter);
+		console.log('Pins status: ' + pins);	
+		console.log('Pins down: ' + pins_down);	
+		
+		console.log(result);
+		var score = calcScore(result);
+		updateScoreboard(result,score,10,3);
+		
 		if (total_down == 9 || ball_counter == 2) {//Frame over
-			alert('Frame over');
-			showAllPins();
-			
+			showAllPins();			
 			frame_counter++;
 			ball_counter = 0;
 			return;
@@ -124,9 +145,6 @@
 		if (frame_counter == 9) {//This is the last frame
 			alert('Game over');
 		}
-		console.log('Ball count: ' + ball_counter);
-		console.log('Frame count: ' + frame_counter);
-		console.log('Pins status: ' + pins);
 		var pinarry = new Array();
 		for (var i = 0; i <= pins.length; i++) {
 			if (pins[i] == 0) //Drop pin
@@ -145,6 +163,7 @@
 	webowl.init=function() {
 		registerMenuEvents();
 		loadMenu();
+		initPins();
 		pins = [1,1,1,1,1,1,1,1,1,1];
 		frame_counter = 0;
 		ball_counter = 0;
