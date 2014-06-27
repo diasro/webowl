@@ -56,8 +56,9 @@
 		  }, 2000, function() {			  		 
 				for (var i = 0; i <= pinarry.length; i++) {
 					drop(0,pinarry[i]);
-					$("#pin" + pinarry[i]).hide();
+					$("#pin" + pinarry[i]).hide();					
 				}
+				$("#ballpath").css("right","0");	
 		  }
 		  );
 	}
@@ -92,6 +93,17 @@
 		
 	}
 	
+	function showAllPins() {
+		pins = [1,1,1,1,1,1,1,1,1,1];
+		for (var i=1; i<=10;i++) {
+			$('#pin' + i).show();
+			var degree = 10;
+			$('#pin' + i).css({ WebkitTransform: 'rotate(' + (-degree) + 'deg)'});
+			$('#pin' + i).css({ '-moz-transform': 'rotate(' + (-degree) + 'deg)'});			
+		}
+		
+	}
+	
 	function bowlroll()	{
 		var total_down = 0;
 		for (var i = 0; i < 10; i++) {
@@ -101,10 +113,13 @@
 				++total_down;
 			}
 		}
-		ball_counter++;
-		if (total_down == 10 || ball_counter == 2) {//Frame over
+		if (total_down == 9 || ball_counter == 2) {//Frame over
+			alert('Frame over');
+			showAllPins();
+			
 			frame_counter++;
 			ball_counter = 0;
+			return;
 		}
 		if (frame_counter == 9) {//This is the last frame
 			alert('Game over');
@@ -113,12 +128,13 @@
 		console.log('Frame count: ' + frame_counter);
 		console.log('Pins status: ' + pins);
 		var pinarry = new Array();
-		for (var i = 0; i < pins.length; i++) {
+		for (var i = 0; i <= pins.length; i++) {
 			if (pins[i] == 0) //Drop pin
-				pinarry.push(i);
+				pinarry.push(i+1);
 		}
 		webowl.dropPins(pinarry);
 		$("#ballpath").css("right","-50");	
+		ball_counter++;
 //		pinarry.push("3");
 //		pinarry.push("2");
 //		webowl.dropPins(pinarry);
