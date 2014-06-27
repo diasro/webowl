@@ -85,4 +85,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 #ballpath {
 	z-index: 1000;
 }
+.scoreboard {
+	border: 1px solid #2d6898;
+	border-collapse: collapse;
+	padding: 10px;
+	width: 700px;
+}
 
+.scoreboard td, th {
+	border: 1px solid #2d6898;
+	padding: 10px;
+	
+}
+
+.scoreboard tr > td > table {
+	border: 0px;
+}
+
+#scorecontainer {
+	text-align: center;
+	margin: auto;
+	width: 900px;
+}

@@ -48,3 +48,14 @@ function calcScore(resultMap){
 	
 	return values;
 }
+
+function updateScoreboard(result, score, frame, ball){
+	for (var i in result){
+		$('#frame-' + i + '-ball-0').text(result[i][0]);
+		$('#frame-' + i + '-ball-1').text(result[i][1]);
+		if (typeof result[i][2] != 'undefined'){
+			$('#frame-' + i + '-ball-2').text(result[i][2]);
+		}
+		$('#frame-' + i + '-score').text(score[i]);
+	}
+}
