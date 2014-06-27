@@ -51,11 +51,42 @@ function calcScore(resultMap){
 
 function updateScoreboard(result, score, frame, ball){
 	for (var i in result){
-		$('#frame-' + i + '-ball-0').text(result[i][0]);
-		$('#frame-' + i + '-ball-1').text(result[i][1]);
-		if (typeof result[i][2] != 'undefined'){
-			$('#frame-' + i + '-ball-2').text(result[i][2]);
+		if (i < 9){
+			if (result[i][0] == 10){
+				//strike
+				$('#frame-' + i + '-ball-0').text('X');
+				$('#frame-' + i + '-ball-1').text('');
+			}else if (result[i][0] + result[i][1] == 10){
+				//spare
+				$('#frame-' + i + '-ball-0').text(convertStrike(result[i][0]));
+				$('#frame-' + i + '-ball-1').text('/');
+			}else{
+				$('#frame-' + i + '-ball-0').text(convertStrike(result[i][0]));
+				$('#frame-' + i + '-ball-1').text(convertStrike(result[i][1]));
+			}
+		}else{
+			$('#frame-' + i + '-ball-0').text(convertStrike(result[i][0]));
+			$('#frame-' + i + '-ball-1').text(convertStrike(result[i][1]));
+			if (typeof result[i][2] != 'undefined'){
+				$('#frame-' + i + '-ball-2').text(convertStrike(result[i][2]));
+			}
+			
+			//Spare
+			if (result[i][0] + result[i][1] == 10){
+				$('#frame-' + i + '-ball-1').text('/');
+			}
+			
 		}
 		$('#frame-' + i + '-score').text(score[i]);
 	}
+}
+
+function convertStrike(value){
+	if (value == 10){
+		value = 'X';
+	}
+	if (value == 0){
+		value = '-';
+	}
+	return value;
 }
