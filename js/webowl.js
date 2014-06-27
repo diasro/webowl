@@ -129,15 +129,11 @@
 	webowl.init=function() {
 		registerMenuEvents();
 		loadMenu();
-<<<<<<< HEAD
 		pins = [1,1,1,1,1,1,1,1,1,1];
 		frame_counter = 0;
-		ball_counter = 0;	
-		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
-=======
+		ball_counter = 0;
 		loadScoreboard();
-		$(document).off('click', '#nxtball').on( 'click', '#nxtball', function (event) {
->>>>>>> origin/master
+		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
 			event.preventDefault();
 			bowlroll();
 		});				
