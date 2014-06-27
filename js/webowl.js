@@ -55,6 +55,17 @@
 		});		
 	}
 	
+	function loadScoreboard() {		
+		$.ajax({
+			url : "./scores.html",
+			type : "GET",
+			dataType : "html",
+			success : function(data) {
+				$("#scorecontainer").html(data);
+			}
+		});		
+	}
+	
 	function registerMenuEvents() {
 		$(document).off('click', '.mnu').on( 'click', '.mnu', function (event) {
 			event.preventDefault();
@@ -66,6 +77,7 @@
 	webowl.init=function() {
 		registerMenuEvents();
 		loadMenu();
+		loadScoreboard();
 		$(document).off('click', '#nxtball').on( 'click', '#nxtball', function (event) {
 			event.preventDefault();
 			loadView('playfield');
