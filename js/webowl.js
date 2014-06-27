@@ -73,6 +73,17 @@
 		});		
 	}
 	
+	function loadScoreboard() {		
+		$.ajax({
+			url : "./scores.html",
+			type : "GET",
+			dataType : "html",
+			success : function(data) {
+				$("#scorecontainer").html(data);
+			}
+		});		
+	}
+	
 	function registerMenuEvents() {
 		$(document).off('click', '.mnu').on( 'click', '.mnu', function (event) {
 			event.preventDefault();
@@ -118,10 +129,15 @@
 	webowl.init=function() {
 		registerMenuEvents();
 		loadMenu();
+<<<<<<< HEAD
 		pins = [1,1,1,1,1,1,1,1,1,1];
 		frame_counter = 0;
 		ball_counter = 0;	
 		$(document).off('click', '#rollball').on( 'click', '#rollball', function (event) {
+=======
+		loadScoreboard();
+		$(document).off('click', '#nxtball').on( 'click', '#nxtball', function (event) {
+>>>>>>> origin/master
 			event.preventDefault();
 			bowlroll();
 		});				
